@@ -2,16 +2,13 @@ language: java
 jdk:
 - openjdk8
 script:
-  - ./gradlew clean createZip
-  - export RELEASE_PKG_FILE=$(ls build/distributions/*)
-  - echo created $RELEASE_PKG_FILE
+- "./gradlew clean createZip"
+- export RELEASE_PKG_FILE=$(ls build/distributions/*)
+- echo created $RELEASE_PKG_FILE
 deploy:
-  skip_cleanup: true
   provider: releases
   api_key:
-    secure: Uz9ayDViERQUGi9yXIEoYFvlJtxegDLIUuzq+cG3duoUKFFyuvV1CyKRSCH9tPfnzFlUw3GUEs6uSk+wgwStlcBzQ0PV80ypgef36yELdCHTcA8kVMiCq9trL2IbgdI4PE9tiis6w6aq4/Djsv1awieJhKeYDPKaLKfZbO7KsSBI9TyqkIZwgO/Skf+PTTwzlTClSbnk/Dj3t1paEan9SFU5PJ/o33qxfqQM5qtftiOTmripQZjwW+gaNI6uZwmb1DY5q2U2cUQgFhpmS9oWaLJQoeddMgNpvURe2DHEqTcmTQjC2g+p45SjzmRcAvN1ycySrfq+zQ4YpooRVGXmm4lPg4JLJ72z68/hUeAkNJYUMQTVJ9vz+ju62yVi4uFAI7dln1TKYCR7fFFMSfFeDdcg9TUYR5cyOBQ4h7U7VmQMyCbUPHDT3QLHzBqsLmHCEVhP4XbFlup3Jh+QZfa5peMbYvQavSiiNsZWi/nE7PoE7sGQeeWXX1mJrtcIyGkidYkVtqG/mvfpHjpKGP8q+BwlyRifizLuT6BNgY3twm/zrpQCxqJsh41Ykjc0hl8m5rgLnzKkizN793AHWZP5M7cmOwWRIJSMtnbRq2LAkOEP9s95ZMcOwmCmhVzsy4PeLjSZdSoFpRK1Le4MDxjBUwFVLe7fI3E0ZiTwZhdBZ2A=
-  file_glob: true
-  file: $RELEASE_PKG_FILE
+    secure: EhZmqsTdx8+C3FqNxVYqLqmVKSWDJfrZWVGHah5tbMyXnMbA9wTeV2yP4e7ZlfkaQHWaQkSFihxI1c/Gj8FUliefhjhm2qzwkLyA9npfhlA20DD68llJNavsltAdE3cc4m3651iuN3s67pjvSenAyvTpUhBAjdxsQwLncJQXl/rI8n0kqI660H5YT6kBLYPh2fugap0o3rdzj78lIhzztiDPke9rzzvwnp6f66Cuyky7FadeFn3p+4iK5epbVuNqwGTYdp6KGMaN++JgZzdmermkuI/U0xl/iiILvyFdE8q2HvsmhvpN37QpATlC5yZ16fGTc2jJ0Q37TWYX9GfHNZTmsEbMgVmbt0Mm8uw6t9RgK/g2joAXzKWEkf1tZNuBFtNVGADvmBfKOT35/X+hptjlofMPB81QbD+vvjn9l3nLR1E8zMvjcUIrmq9Q/Py8HzEwH4yA+WqwS6c4GrECmxn9p1wlEQs2/ZPd+QmJ59xkKU0EIVZ9JQ8yA6BI1/32SjBL0N//qnTS0k0dPhg9++Y/2QZsLIHW79jDFNVH0OHPV+mAZXsnJt9mq138VqcNgR0r1BlsZSp0x5XJp1YmBNGx48egWBNgsqByVDKkrR30wgGDmw9PhqJQEAcA39wlXQ5ALw24iREg/3M8nM2wjUKhvroa0umymMUTLl0Won4=
+  file: file
   on:
-    tags: true
     repo: ruimo/rpiled-srv

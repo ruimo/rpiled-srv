@@ -2,13 +2,16 @@ language: java
 jdk:
 - openjdk8
 script:
-- "./gradlew clean createZip"
-- export RELEASE_PKG_FILE=$(ls build/distributions/*)
-- echo created $RELEASE_PKG_FILE
+  - ./gradlew clean createZip
+  - export RELEASE_PKG_FILE=$(ls build/distributions/*)
+  - echo created $RELEASE_PKG_FILE
 deploy:
+  skip_cleanup: true
   provider: releases
   api_key:
     secure: EhZmqsTdx8+C3FqNxVYqLqmVKSWDJfrZWVGHah5tbMyXnMbA9wTeV2yP4e7ZlfkaQHWaQkSFihxI1c/Gj8FUliefhjhm2qzwkLyA9npfhlA20DD68llJNavsltAdE3cc4m3651iuN3s67pjvSenAyvTpUhBAjdxsQwLncJQXl/rI8n0kqI660H5YT6kBLYPh2fugap0o3rdzj78lIhzztiDPke9rzzvwnp6f66Cuyky7FadeFn3p+4iK5epbVuNqwGTYdp6KGMaN++JgZzdmermkuI/U0xl/iiILvyFdE8q2HvsmhvpN37QpATlC5yZ16fGTc2jJ0Q37TWYX9GfHNZTmsEbMgVmbt0Mm8uw6t9RgK/g2joAXzKWEkf1tZNuBFtNVGADvmBfKOT35/X+hptjlofMPB81QbD+vvjn9l3nLR1E8zMvjcUIrmq9Q/Py8HzEwH4yA+WqwS6c4GrECmxn9p1wlEQs2/ZPd+QmJ59xkKU0EIVZ9JQ8yA6BI1/32SjBL0N//qnTS0k0dPhg9++Y/2QZsLIHW79jDFNVH0OHPV+mAZXsnJt9mq138VqcNgR0r1BlsZSp0x5XJp1YmBNGx48egWBNgsqByVDKkrR30wgGDmw9PhqJQEAcA39wlXQ5ALw24iREg/3M8nM2wjUKhvroa0umymMUTLl0Won4=
-  file: file
+  file_glob: true
+  file: $RELEASE_PKG_FILE
   on:
+    tags: true
     repo: ruimo/rpiled-srv

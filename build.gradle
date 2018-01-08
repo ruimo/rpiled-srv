@@ -1,0 +1,38 @@
+plugins {
+  id 'net.researchgate.release' version '2.6.0'
+}
+
+apply plugin: "java"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.pi4j', name: 'pi4j-core', version: '1.1'
+    compile group: 'com.pi4j', name: 'pi4j-gpio-extension', version: '1.1'
+
+    testCompile "junit:junit:4.11" 
+}
+
+task wrapper(type: Wrapper) {
+}
+
+jar {
+  manifest {
+    attributes "Main-Class" : "rpiledsrv.Main"
+    attributes 'Class-Path': configurations.runtime.files.collect {
+      'lib/' + it.name
+    }.join(' ')
+  }
+}
+
+task createZip(type: Zip, dependsOn: jar) {
+  from(jar.outputs.files) {
+    into("${baseName}-${version}")
+  }
+
+  from(configurations.runtime) {
+    into("${baseName}-${version}/lib")
+  }
+}

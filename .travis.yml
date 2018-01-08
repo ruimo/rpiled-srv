@@ -3,7 +3,6 @@ jdk:
 - openjdk8
 script:
   - ./gradlew clean createZip
-  - find .
   - export RELEASE_PKG_FILE=$(ls build/distributions/*)
   - echo created $RELEASE_PKG_FILE
 deploy:

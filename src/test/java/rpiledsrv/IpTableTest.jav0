@@ -1,0 +1,22 @@
+package rpiledsrv;
+
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
+
+public class IpTableTest {
+    @Test
+    public void ipTableCanRegisterIps() throws Exception {
+        IpTable tbl = new IpTable();
+        
+        assertThat(tbl.registerIpAndGetIndex("9.8.7.6")).isEqualTo(0);
+        assertThat(tbl.registerIpAndGetIndex("0.1.2.3")).isEqualTo(1);
+
+        assertThat(tbl.registerIpAndGetIndex("9.8.7.6")).isEqualTo(0);
+        assertThat(tbl.registerIpAndGetIndex("0.1.2.3")).isEqualTo(1);
+
+        // It should maintain latest two IPs. Oldest "9.8.7.6" should be deleted.
+        assertThat(tbl.registerIpAndGetIndex("5.5.5.5")).isEqualTo(1);
+        assertThat(tbl.registerIpAndGetIndex("0.1.2.3")).isEqualTo(0);
+        assertThat(tbl.registerIpAndGetIndex("5.5.5.5")).isEqualTo(1);
+    }
+}

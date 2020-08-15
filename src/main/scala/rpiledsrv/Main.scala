@@ -11,17 +11,11 @@ object Main {
 
   def main(args: Array[String]) {
     println("Start initialization...")
-    val ledTable = if (NoLed) {
-      new MockLedTable()
-    } else {
-      new LedTableImpl()
-    }
+    val ledTable = createLedTable
     println("End initialization.")
 
-    def start() {
-      println("Opening fifo...")
-      Using(new BufferedReader(new FileReader(FifoPath.toFile()))) { startWithReader }
-    }
+    println("Opening fifo...")
+    Using(new BufferedReader(new FileReader(FifoPath.toFile()))) { startWithReader }
 
     def startWithReader(br: BufferedReader) {
       while (true) {
@@ -40,7 +34,14 @@ object Main {
     }
 
     def handleWithCommand(command: Command) {
-        ledTable.blink(command)
+      ledTable.blink(command)
     }
   }
+
+  private[this] def createLedTable: LedTable =
+    if (NoLed) {
+      new MockLedTable()
+    } else {
+      new LedTableImpl()
+    }
 }

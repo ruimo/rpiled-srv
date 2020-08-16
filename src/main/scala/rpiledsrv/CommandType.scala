@@ -24,13 +24,13 @@ object CommandType {
     override val ordinal = 5
   }
 
-  def parse(s: String): CommandType = s match {
-    case "o" => Online
-    case "r" => Request
-    case "ls" => LivenessSuccess
-    case "lf" => LivenessFailure
-    case "rs" => RedinessSuccess
-    case "rf" => RedinessFailure
-    case _ => throw new IllegalArgumentException("Invalid command type '" + s + "'")
+  def parse(s: String): Option[CommandType] = s match {
+    case "o" => Some(Online)
+    case "r" => Some(Request)
+    case "ls" => Some(LivenessSuccess)
+    case "lf" => Some(LivenessFailure)
+    case "rs" => Some(RedinessSuccess)
+    case "rf" => Some(RedinessFailure)
+    case _ => None
   }
 }

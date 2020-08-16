@@ -30,7 +30,12 @@ object Main {
     }
 
     def handle(line: String) {
-      handleWithCommand(Command.apply(line))
+      Command.parse(line) match {
+        case None =>
+          println("Cannot parse '" + line + "'. Ignored.")
+        case Some(c) =>
+          handleWithCommand(c)
+      }
     }
 
     def handleWithCommand(command: Command) {

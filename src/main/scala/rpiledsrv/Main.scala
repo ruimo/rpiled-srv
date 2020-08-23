@@ -15,7 +15,7 @@ object Main {
     println("End initialization.")
 
     println("Opening fifo...")
-    Using(new BufferedReader(new FileReader(FifoPath.toFile()))) { startWithReader }
+    Using.resource(new BufferedReader(new FileReader(FifoPath.toFile()))) { startWithReader }
 
     def startWithReader(br: BufferedReader) {
       while (true) {

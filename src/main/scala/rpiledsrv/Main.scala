@@ -6,7 +6,7 @@ import java.nio.file.Paths
 import scala.util.Using
 
 object Main {
-  val FifoPath = Paths.get("/tmp/fifo")
+  val FifoPath = Paths.get("/var/fifo")
   val NoLed = Option(System.getenv("NO_LED")).map(s => s.equalsIgnoreCase("true")).getOrElse(false)
 
   def main(args: Array[String]) {

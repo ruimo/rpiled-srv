@@ -4,9 +4,9 @@ import com.pi4j.io.gpio.{GpioPinDigitalOutput, PinState}
 
 import scala.concurrent.duration.Duration
 
-class Led(name: String, pin: GpioPinDigitalOutput) {
+class Led(name: String, pin: GpioPinDigitalOutput, isNegativeLogic: Boolean = false) {
   def blink(dur: Duration) {
-    pin.pulse(dur.toMillis, PinState.HIGH)
+    pin.pulse(dur.toMillis, if (isNegativeLogic) PinState.LOW else PinState.HIGH)
   }
 
   override def toString: String =

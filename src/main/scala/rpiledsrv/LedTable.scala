@@ -22,15 +22,15 @@ class LedTableImpl extends LedTable {
   private[this] val ledTable: Array[Led] = Array(
     new Led("online-0", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08)),
     new Led("access-0", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_09)),
-    new Led("liveness-success-0", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_07)),
-    new Led("liveness-failure-0", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00)),
+    new Led("liveness-success-0", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_07), true),
+    new Led("liveness-failure-0", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00), true),
     new Led("readiness-success-0", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02)),
     new Led("readiness-failure-0", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03)),
 
     new Led("online-1", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_15)),
     new Led("access-1", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_16)),
-    new Led("liveness-success-1", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04)),
-    new Led("liveness-failure-1", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05)),
+    new Led("liveness-success-1", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04), true),
+    new Led("liveness-failure-1", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05), true),
     new Led("readiness-success-1", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06)),
     new Led("readiness-failure-1", gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10)),
   )

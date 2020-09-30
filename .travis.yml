@@ -1,11 +1,10 @@
 language: java
-jdk:
-- openjdk8
+jdk:openjdk8
+scala:
+  - 2.13.1
 script:
-  - pwd
-  - ls -la
-  - ./gradlew clean createZip
-  - export RELEASE_PKG_FILE=$(ls build/distributions/*)
+  - sbt ++$TRAVIS_SCALA_VERSION test universal:publish
+  - export RELEASE_PKG_FILE=$(ls target/universal/*.tgz)
   - echo created $RELEASE_PKG_FILE
 deploy:
   skip_cleanup: true

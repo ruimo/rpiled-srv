@@ -52,7 +52,7 @@ class IpTable {
                   if (lastUpdated < ipTable(oldestIdx).asInstanceOf[IpSlot.Element].lastUpdated)
                     findOldest(curIdx + 1, curIdx)
                   else
-                    findOldest(curIdx, oldestIdx)
+                    findOldest(curIdx + 1, oldestIdx)
                 }
             }
           }

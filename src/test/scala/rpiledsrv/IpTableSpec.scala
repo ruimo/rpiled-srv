@@ -8,7 +8,9 @@ class IpTableSpec extends Specification {
       val tbl = new IpTable()
 
       tbl.registerIpAndGetIndex("9.8.7.6") === 0
+      Thread.sleep(1)
       tbl.registerIpAndGetIndex("0.1.2.3") === 1
+      Thread.sleep(1)
       tbl.registerIpAndGetIndex("9.8.7.6") === 0 // Last accessed IP.
 
       // It should maintain latest two IPs. Oldest "0.1.2.3" should be deleted.
@@ -22,8 +24,11 @@ class IpTableSpec extends Specification {
       val tbl = new IpTable()
 
       tbl.registerIpAndGetIndex("9.8.7.6") === 0
+      Thread.sleep(1)
       tbl.registerIpAndGetIndex("0.1.2.3") === 1
+      Thread.sleep(1)
       tbl.registerIpAndGetIndex("9.8.7.6") === 0
+      Thread.sleep(1)
       tbl.registerIpAndGetIndex("0.1.2.3") === 1 // Last accessed IP.
 
       // It should maintain latest two IPs. Oldest "9.8.7.6" should be deleted.
